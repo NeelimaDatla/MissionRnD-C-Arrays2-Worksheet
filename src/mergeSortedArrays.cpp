@@ -20,19 +20,17 @@ struct transaction {
 	char date[11];
 	char description[20];
 };
-int date_compare2(char *, char *);
 struct transaction * mergeSortedArrays(struct transaction *A, int ALen, struct transaction *B, int BLen) {
-	/*int i = 0;
+	int i = 0;
 	int j = 0;
 	int k = 0;
 	int flag = 0;
 	if (A == NULL || B == NULL)
 		return NULL;
-	struct transaction *res = (struct transaction*)malloc(sizeof(struct transaction) * 3);
+	struct transaction *res = (struct transaction*)malloc(sizeof(struct transaction) * 9);
 	while (i < ALen && j < BLen)
 	{
-		flag = date_compare2(A[i].date, B[i].date);
-		if (flag == 1)
+		if (A[i].amount < B[j].amount)
 		{
 			res[k] = A[i];
 			i++;
@@ -55,45 +53,12 @@ struct transaction * mergeSortedArrays(struct transaction *A, int ALen, struct t
 	}
 	if (j >= BLen)
 	{
-		while (i < ALen)
+		while (i<ALen)
 		{
 			res[k] = A[i];
 			i++;
 			k++;
 		}
 	}
-	return res;*/
-	return NULL;
-}
-int date_compare2(char dob1[], char dob2[]){
-	if (dob1[2] != '-' || dob1[5] != '-' || dob2[2] != '-' || dob2[5] != '-')
-		return -1;
-	int year1 = ((dob1[6] - 48) * 1000) + ((dob1[7] - 48) * 100) + ((dob1[8] - 48) * 10) + (dob1[9] - 48);
-	int year2 = ((dob2[6] - 48) * 1000) + ((dob2[7] - 48) * 100) + ((dob2[8] - 48) * 10) + (dob2[9] - 48);
-	int month1 = ((dob1[3] - 48) * 10) + (dob1[4] - 48);
-	int month2 = ((dob2[3] - 48) * 10) + (dob2[4] - 48);
-	int day1 = ((dob1[0] - 48) * 10) + (dob1[1] - 48);
-	int day2 = ((dob2[0] - 48) * 10) + (dob2[1] - 48);
-	if (year1 == year2 && month1 == month2 && day1 == day2)
-		return 2;
-	if(year1 < year2)
-		return 1;
-	/*if (year1 > year2)
-		return 2;
-	else if (year2 > year1)
-		return 1;
-	else{
-		if (month1 > month2)
-			return 2;
-		else if (month2 > month1)
-			return 1;
-		else{
-			if (day1 > day2)
-				return 2;
-			else if (day2 > day1)
-				return 1;
-			else
-				return 0;
-		}
-	}*/
+	return res;
 }
